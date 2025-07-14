@@ -1,0 +1,874 @@
+/*create view wait gian,normal,loss with having time*/
+create view breakfast_gain as select * from mealplan where meal_type='gain' and meal_time=1;
+create view breakfast_normal as select * from mealplan where meal_type='normal' and meal_time=1;
+create view breakfast_loss as select * from mealplan where meal_type='loss' and meal_time=1;
+
+create view lunch_gain as select * from mealplan where meal_type='gain' and meal_time=2;
+create view lunch_normal as select * from mealplan where meal_type='normal' and meal_time=2;
+create view lunch_loss as select * from mealplan where meal_type='loss' and meal_time=2;
+
+create view snack_gain as select * from mealplan where meal_type='gain' and meal_time=3;
+create view snack_normal as select * from mealplan where meal_type='normal' and meal_time=3;
+create view snack_loss as select * from mealplan where meal_type='loss' and meal_time=3;
+
+create view dinner_gain as select * from mealplan where meal_type='gain' and meal_time=4;
+create view dinner_normal as select * from mealplan where meal_type='normal' and meal_time=4;
+create view dinner_loss as select * from mealplan where meal_type='loss' and meal_time=4;
+
+insert into foodcategory (cat_id, cat_name) values(null,"meat");
+insert into foodcategory (cat_id, cat_name) values(null,"vegetable");
+insert into foodcategory (cat_id, cat_name) values(null,"fruits");
+insert into foodcategory (cat_id, cat_name) values(null,"drink");
+insert into foodcategory (cat_id, cat_name) values(null,"dairy");
+insert into foodcategory (cat_id, cat_name) values(null,"other");
+/* meat food list KKT*/
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"chicken",1,"chicken is 239 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"turkey",1,"turkey is 188.8 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pork",1,"pork is 242.1 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"beef",1,"beef is 250.5 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"venison",1,"venison is 150 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"duck",1,"duck is 377 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pheasant",1,"pheasant is 151 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"egg",1,"egg is 155.1 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"rabbit",1,"rabbit is 175 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"mutton",1,"mutton is 294 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"fish",1,"fish is 109 Calories per 178 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"crab",1,"crab is 65 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"oysters",1,"oysters is 198.8 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"prawn",1,"prawn is 120 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"octopus",1,"octopus is 62 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"clam",1,"clam is 67 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"sausages",1,"susages is 300.9 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"scallop",1,"scallop is 120 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"mussels",1,"mussels is 172.1 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"lobster",1,"lobster is 160 Calories per 100 g");
+/*breakfast
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,2,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,3,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,4,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,5,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,6,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+/*lunch*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,2,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,3,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,4,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,5,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,6,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+/*snack*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,2,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,3,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,4,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,5,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,6,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+/*dinner*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,2,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,3,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,4,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,5,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,6,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+*/
+/* foodlist MayPhyo*/
+/* fruits */
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"apple",3,"Apple is 52 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"mango",3,"Mango is 60 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"avocado",3,"Avacado is 160 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"banana",3,"Banana is 89 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"grape",3,"Grape is 67 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"kiwi",3,"Kiwi is 61 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"lemon",3,"Lemon is 29 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"peach",3,"Peach is 39 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"strawberry",3,"Strawberry is 33 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"watermelon",3,"Watermelon is 30 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pineapple",3,"Pineapple is 50 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"dragon fruit",3,"Dragon fruit is 60 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"papaya",3,"Papaya is 43 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"guava",3,"Guava is 68 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pomegranate",3,"Pomegranate is 83 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"persimmon",3,"Persimmon is 127 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"muskmelon",3,"Muskmelon is 34 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"jackfruit",3,"Jackfruit is 94.89 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pear",3,"Pear is 57 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"plum",3,"Plum is 45.89 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"orange",3,"Orange is 47 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"custard apple",3,"Custard apple is 94 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"passion fruit",3,"Passion fruit is 97 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"rambutan",3,"Rambutan is 75 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"purple mangosteen",3,"Purple mangosteenambutan is 63 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"durian",3,"Durian is 150 Calories per 100 g");
+/* Hnin*/
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"apple_juice",4,"Apple juice is 45 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"avocardo_juice",4,"Avocardo juice is 160 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"coconut_juice",4,"Coconut juice is 354 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"coffee",4,"Coffee is 1 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"dragonfruit_juice",4,"Dragonfruit juice is 51 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Grapes_juice",4,"Grapes juice is 55 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"honey",4,"Honey is 304 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"kiwi_juice",4,"Kiwi juice is 61 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"lime_juice",4,"Lime juice is 25 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"mango_juice",4,"Mango juice is 58 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"orange_juice",4,"Orange juice is 45 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Pineapple_juice",4,"Pineapple juice is 41 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pomegranate_juice",4,"pomegranate juice is 68 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"pumpkin_juice",4,"Pumpkin juice is 39 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"strawberry_juice",4,"Strawberry juice is 38 Calories per 100 g");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"tea",4,"Tea is 10 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"cranberry_juice",4,"Cranberry juice is 46 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"papaya_juice",4,"Papaya juice is 43 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"watermelon_juice",4,"Watermelon juice is 74 Calories per 100 g");
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"cucumber_juice",4,"Cucumber juice is 15 Calories per 100 g");
+
+
+/*snack for weight normal*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,1,"Can eat with biscuit and donut.","apple_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,2,"Can eat with biscuit and donut.","avocardo_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,3,"Can eat with biscuit and donut.","coconut_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,4,"Can eat with biscuit and donut.","coffee.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,5,"Can eat with biscuit and donut.","dragonfruit_juice.png");
+
+/*dinner for weight normal*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,6,"Can eat with donut.","grapes_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,7,"Can eat with donut.","honey.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,8,"Can eat with donut.","kiwi_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,9,"Can eat with donut.","lime_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,10,"Can eat with donut.","mango_juice.jpg");
+
+/*snack for weight gain*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,11,"Can eat with pizza and cookie.","orange_juice.png");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,12,"Can eat with pizza and cookie.","avocardo_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,13,"Can eat with pizza and cookie.","pineapple_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,14,"Can eat with pizza and cookie.","pomegranate_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,15,"Can eat with pizza and cookie.","pumpkin_juice.jpg");
+
+
+/*dinner for weight gain*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,16,"Can eat with cake.","strawberry_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,17,"Can eat with cake.","tea.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,18,"Can eat with cake.","cranberry juice.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,19,"Can eat with cake.","watermelon_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,20,"Can eat with cake.","cucumber_juice.png");
+
+
+/*snack for weight loss*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,1,"Can eat with cookie.","apple_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,2,"Can eat with cookie.","avocardo_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,3,"Can eat with cookie.","coconut_juice.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,4,"Can eat with cookie.","coffee.jpg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,5,"Can eat with cookie.","dragonfruit_juice.png");
+
+/*mealplan KKT*/
+/* weight gain breakfast*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,8,"Can eat with bread","egg.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,17,"Can eat with bread","sausages.jpeg");
+/* weight gain Lunch*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,1,"Can eat with rice","chicken.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,2,"Can eat with rice","turkey.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,3,"Can eat with rice","pork.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,4,"Can eat with rice","beef.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,5,"Can eat with rice","venison.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,6,"Can eat with rice","duck.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,7,"Can eat with rice","pheasant.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,8,"Can eat with rice","egg.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,9,"Can eat with rice","rabbit.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,10,"Can eat with rice","mutton.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,11,"Can eat with rice","fish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,12,"Can eat with rice","crab.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,13,"Can eat with rice","oysters.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,14,"Can eat with rice","prawn.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,15,"Can eat with rice","octopus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,16,"Can eat with rice","clam.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,17,"Can eat with rice","sausages.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,18,"Can eat with rice","scallop.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,19,"Can eat with rice","mussels.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2 ,20,"Can eat with rice","lobster.jpeg");
+
+/* weight gain dinner*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,11,"Can eat with rice","fish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,12,"Can eat with rice","crab.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,13,"Can eat with rice","oysters.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,14,"Can eat with rice","prawn.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,15,"Can eat with rice","octopus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,16,"Can eat with rice","clam.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,17,"Can eat with rice","sausages.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,18,"Can eat with rice","scallop.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,19,"Can eat with rice","mussels.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,20,"Can eat with rice","lobster.jpeg");
+
+/* normal breakfast*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,8,"Can eat with bread","egg.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,17,"Can eat with bread","sausages.jpeg");
+
+/* normal Lunch*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,1,"Can eat with rice","chicken.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,2,"Can eat with rice","turkey.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,3,"Can eat with rice","pork.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,4,"Can eat with rice","beef.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,17,"Can eat with rice","susages.jpeg");
+
+/* normal dinner*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,16,"Can eat with rice","clam.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,12,"Can eat with rice",".jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,18,"Can eat with rice","scallop.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,19,"Can eat with rice","mussels.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,20,"HCan eat with rice","lobster.jpeg");
+
+/* loss breakfast*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,8,"Should eat this boil","egg.jpeg");
+
+/* loss lunch*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,1,"Should eat this boil","chicken.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,11,"Should eat this boil","fish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,12,"Should eat this boil","crab.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,13,"Should eat this boil","oysters.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,14,"Should eat this boil","mussels.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,15,"Should eat this boil","lobster.jpeg");
+/* May phyo meal plan*/
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,1,"Have 4 fruits total amount of 200 calories.","apple.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,2,"Have 4 fruits total amount of 200 calories.","mango.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,3,"Have 4 fruits total amount of 200 calories.","avacado.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,4,"Have 4 fruits total amount of 200 calories.","banana.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,5,"Have 4 fruits total amount of 200 calories.","grape.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,6,"Have 4 fruits total amount of 200 calories.","kiwi.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,7,"Have 4 fruits total amount of 200 calories.","lemon.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,8,"Have 4 fruits total amount of 200 calories.","peach.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,9,"Have 4 fruits total amount of 200 calories.","strawberry.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,10,"Have 4 fruits total amount of 200 calories.","watermelon.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,10,"Have 4 fruits total amount of 200 calories.","watermelon .jpeg");
+
+/*Vegetable*/
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Cauliflower",2,"Cauliflower is 25 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Cucumber",2,"Cucumber is 16 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Mushrooms",2,"Green Beans is 22 Calorie per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Tomato",2,"Tomato is 18 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Cabbage",2,"Cabbage is 25 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Asparagus",2,"Asparagus is 20 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Brinjal",2,"Brinjal is 25 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Broccoli",2,"Broccoli is 34 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Capsicums",2,"Capsicums is 40 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Chokos",2,"Chokos is 19 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Cilantro",2,"Cilantro is 23 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Ginger",2,"Ginger is 80 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Leeks",2,"Leeks is 61 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Lettuce",2,"Lettuce is 15 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Mazie",2,"Mazie is 177 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Okra",2,"Okra is 33 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Peanut",2,"Peanut is 567 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Potato",2,"Potato is 77 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Radish",2,"Radish is 16 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"SweetPotato",2,"SweetPotato is 86 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Taro",2,"Taro is 142 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Turnips",2,"Turnips is 28 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Pumpkin",2,"Pumpkin is 26 Calories per 100g.");
+
+insert into foodlist (food_id,food_name,cat_id,food_desc) values(null,"Carrot",2,"Carrot is 41.3 Calories per 100g.");
+
+
+
+
+/*-----------------------------------------------------*/
+
+
+
+
+/*meal-Plan vegatable*/
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,1,"Have 4 fruits total amount of 200 calories.","cauliflower.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",1,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",1,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",1,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,2,"Have 4 fruits total amount of 200 calories.","cucumber.jpeg");
+
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,3,"Have 4 fruits total amount of 200 calories.","mushrooms.jpeg");
+
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,4,"Have 4 fruits total amount of 200 calories.","Tomato.jpeg");
+
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,5,"Have 4 fruits total amount of 200 calories.","cabbage.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,6,"Have 4 fruits total amount of 200 calories.","Asparagus.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,7,"Have 4 fruits total amount of 200 calories.","brinjal.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,8,"Have 4 fruits total amount of 200 calories.","broccoli.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,9,"Have 4 fruits total amount of 200 calories.","Capsicums.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,10,"Have 4 fruits total amount of 200 calories.","chokos.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,11,"Have 4 fruits total amount of 200 calories.","cilantro.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,12,"Have 4 fruits total amount of 200 calories.","ginger.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,13,"Have 4 fruits total amount of 200 calories.","Leeks.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,14,"Have 4 fruits total amount of 200 calories.","lettuce.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,15,"Have 4 fruits total amount of 200 calories.","mazie.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,16,"Have 4 fruits total amount of 200 calories.","Okra.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,17,"Have 4 fruits total amount of 200 calories.","peanut.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,18,"Have 4 fruits total amount of 200 calories.","potato.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,19,"Have 4 fruits total amount of 200 calories.","radish.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",3,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",3,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",3,20,"Have 4 fruits total amount of 200 calories.","sweet-potato.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,21,"Have 4 fruits total amount of 200 calories.","Taro.jpeg");
+
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,22,"Have 4 fruits total amount of 200 calories.","Turnips.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,23,"Have 4 fruits total amount of 200 calories.","pumpkin.jpeg");
+
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",2,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"normal",4,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",2,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"loss",4,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",2,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+insert into mealplan (meal_id,meal_type,meal_time,food_id,meal_desc,meal_image)values(null,"gain",4,24,"Have 4 fruits total amount of 200 calories.","carrot.jpeg");
+
+
+/*thanmu user table*/
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"khingkhingthant","44f86517485dbf999b485e51d44bd626","khing thant","1995-01-01","f","khingkhingthant@gmail.com","09-544000987",0,17.8);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"myintswe","f6d07af409a033cf6deecca09d0ebba9","Myint Swe","2000-02-7","m","myintswe@gmail.com","09-400004562",0,18.2);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"hsumyatthwe","0f4ecfdb6f54aa8c7bc012b3527a0743","Hsu Myat Thwe","1996-12-08","f","hsumyatthwe@gmail.com","09-430009890",0,25.8);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"mayphyozaw","93a37a4188da302858c16b81ae39099e","May Phyo Zaw","1995-04-09","f","mayphyozaw@gmail.com","09-445477677",0,20.5);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"yiyinwe","5f398f6d8e0d6f4305da62f8a14e326d","Yi Yi Nwe","1994-12-30","f","yinyinnwe@gmail.com","09-544000987",0,17.8);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"choosethazinhlaing","6b6ab0c04f727c8657bfc12161779352","Choose Thazin Hlaing","2019-12-26","f","choosethazinhlaing@gmail.com","09-255434566",0,25.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"lapyaeoo","c8788512cdb0aac3f550a50559d99000","La Pyae Oo","1996-05-11","m","lapyaeoo@gmail.com","09-256645433",0,27.8);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"kyisinsinAye","394b1f80266f4885ebad3a047c0502b4","Kyi Sin Sin Aye","1995-12-08","f","kyisinsinaye@gmail.com","09-400005543",0,35.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"hninyuhlaing","a5a1911bd2a47a7e88e69083146154b3","Hnin Yu Hlaing","1997-02-6","f","hninyuhlaing@gmail.com","09-54400088",0,30.7);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"soemaung","c459f8ed1d3c412b55907b59a91e1fd5","SoeMaung","1996-02-18","m","soemaung@gmail.com","09-250004345",0,39.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"myathannu","2f4454a863468298e1c53362692442d4","Mya Than Nu","1995-12-06","f","myathannu@gmail.com","09-334345423",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"phyozaw","ca02995752dbae8a03f6704e538eb74b","Phyo Zaw","1996-08-30","m","phyozaw@gmail.com","09-400089878",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"eaindra","6c2d0c6f727d251a9aa7ed0cea7a233b","Eaindra","1996-02-28","f","eaindra@gmail.com","09-430006650",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"htethtet","20ea7315c69f87fcd1b7c00f22161d73","Htet Htet","1996-12-08","f","htethtet@gmail.com","09-967778005",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"thanthanmu","4849db0c58193dad52529b7b307fcd65","Than Than Mu","1997-02-09","f","thanthanmu@gmail.com","09-424345022",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"eieinyein","bd98735da1d66e683ba823ec1c65c977","Ei Ei Nyein","1996-05-16","f","eieinyein@gmail.com","09-79434456",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"eithatmon","d293a7c2c63c39a91453e3f255abe8fc","Ei That Mon","1996-12-29","f","eithatmon@gmail.com","09-976687650",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"hninmyatnoezaw","ee1cbbaa407050c7559a1ca0407c43f8","Hnin Myat Noe Zaw","1992-06-15","f","hninmyatnoezaw@gmail.com","09-544000987",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"nwenwetun","37d7c8b96b2add5689be5db12977e6ed","Nwe Nwe Tun","1996-08-19","f","nwenwetun@gmail.com","09-544066587",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"thoonthazinzaw","1a2210c8a3712482bc4887a75c59e603","Thoon Tha Zin Zaw","1996-08-26","f","thoonthazinzaw@gmail.com","09-968880012",0,null);
+
+/* Soe Maung user"*/
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"mgmg","daa4bf1b4d0978fa034ada89161a23c4","Mg Mg","1996-12-05","m","mgmg@gmail.com","09400005745",0,18.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"aungaung","d0c9581d56738e8646a034b30e0a877c","Aung Aung","1993-10-05","m","aunguang@gmail.com","09434565745",0,18.4);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"zawzaw","a0cd988baa6688006e10456b2dfb9c8b","Zaw Zaw","1998-10-12","m","zawzaw@gmail.com","09434565214",0,17.4);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"meemee","43e79ea94e083da6bea7be623b1bbea6","Mee Mee","1988-2-15","f","meemee@gmail.com","09256565214",0,15.4);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"nini","db5cee64d8879581f189d71178dcb055","Ni Ni","1988-5-15","f","nini@gmail.com","09234565214",0,35.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"sandi","ac9b4e0b6a21758534db2a6324d34a54","San Di","1988-8-20","f","sandi@gmail.com","09245665214",0,38.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"nunu","2f8c3ab806a42e79c774cb09b41a53c8","Nu Nu","1986-10-20","f","nunu@gmail.com","09265465214",0,30.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"zarni","d2adb774f46f2a87bd75dc112f6fef1c","Zar Ni","2015-10-20","m","zarni@gmail.com","09465465214",0,20.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"nwenwe","682c45fc3d9587aa9c87aa482cf60cce","Nwe Nwe","2014-8-20","f","nwenwe@gmail.com","09261115214",0,15.9);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"linlin","993f1df9451ccbaab7428f4ed519fd8c","Lin Lin","2010-8-14","m","linlin@gmail.com","09261112214",0,12.5);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"phyophyo","4339c409ae4ed4538d9705ee44dff895","Phyo Phyo","2009-2-14","m","phyophyo@gmail.com","09541112214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"arrsan","ed84e07ebe9a802e72fd09e959baf5b5","Arr San","2001-2-14","m","arrsan@gmail.com","09511112214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"lwinmin","05766db962e3d8b337adf1e3f17ac8d6","Lwin Min","2003-8-15","m","lwinmin@gmail.com","09533312214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"pyaepyae","a27aaa7b9f70aa8fcdbb7e0c1727bcce","Pyae Pyae","2013-10-15","m","pyaepyae@gmail.com","09544412214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"myintoo","46b56c6a6e125b6f3a1696ecd47d5fe4","Myint Oo","2010-10-15","m","myintoo@gmail.com","09545412214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"hlahla","2f55c3c0d10571b03cb3deb89f338a65","Hla Hla","2007-11-15","m","hlahla@gmail.com","09543312214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"sese","99032f27eaf45da350b544c68aa6467c","Se Se","2007-10-15","m","sese@gmail.com","09555312214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"juju","0348dcd774a2892097b9d5c84ce882d3","Ju Ju","2001-11-15","m","juju@gmail.com","09556612214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"panpan","41d6aa337d90950e68f32a4979a5129d","Pan Pan","2001-11-15","f","panpan@gmail.com","09556552214",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"dandan","4ba715503ca0b64f5d52d816dcae75e0","Dan Dan","2005-1-15","f","dandan@gmail.com","09586552214",0,null);
+
+/*user register  in user table mi zar htaw*/
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"thoonthoon","eb7fc0d0a7e3c90f92e8835ed5b78574","Thoon Thoon","1996-10-10","f","thoon123@gmail.com","09-123456789",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"mayphoy","869b4c2781f56105b43e55248aeb1bb4","May Phyo","1996-11-11","f","mayphoy@gmail.com","09-987564321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"thanthan","9d1b237e5869bba7d316b01c46634190","Than Than","1994-12-3","f","thanthan@gmail.com","09-678954321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"shwezin","6905259b9c72a86c93f102fa621ff986","Shwe Zin","2001-2-1","f","shwezin@gmail.com","09-45678324799",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"ayemyat","a46a85da146aba5a6753e3b96dc33b05","Aye Myat","1999-6-20","f","ayemyat@gmail.com","09-56738589464",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"minoo","0458c5d60947d10434df90be9d920ade","Min Oo","1998-6-3","m","minoo@gmail.com","09-234561789",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"minko","fa838e999d34ec8d63ad4b4ddbaac244","Myo Ko","2001-6-3","m","myoko@gmail.com","09-978654321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"yeye","d9d5cba7c445bd9f8dfb1f8616b2380d","Ye Ye","1995-9-9","m","yeye@gmail.com","09-876543219",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"tunko","4c998e90442fafcd68517e3882f90792","Tun Ko","1994-2-2","m","tunko@gmail.com","09-987654321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"kohtike","891502424eee377706e87872d97cbba2","Ko Htike","1993-8-23","m","kohtike@gmail.com","09-234567189",0,null);
+
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"myintmoe","58c229fd50454253543b976eb86e911f","Myint Moe","1992-5-6","f","myintmoe@gmail.com","09-123455789",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"eiphyu","6bc19c4e48c29158a3c5e7bf3f6aabdb","Ei Phyu","1991-4-4","f","eiphyu@gmail.com","09-987564821",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"susandi","5cbccb7100fc7e5be9e91e91741d90a0","Su Sandi","1999-9-9","f","susandi@gmail.com","09-678984321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"poeei","83bb325a943b924e6659bf1c30c2b202","Poe Ei","1993-6-5","f","poeei@gmail.com","09-45677624799",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"kayzin","7f61cbaf49f81dec6ef3737703a0ba2c","Kay Zin","1987-6-8","f","kayzin@gmail.com","09-56739789464",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"phyoaung","cd42e92a6306a4f21aa7c17daabb2267","Phyo Aung","1985-2-25","m","phyoaung@gmail.com","09-276561789",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"myokyaw","63fc1e421249f998a31cd3e19f7c466a","Myo Kyaw","1994-7-6","m","myokayw@gmail.com","09-978885431",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"aungtun","4bcaef2136470b8cbdab37e139913350","Aung Tun","1996-12-23","m","aungtun@gmail.com","09-876599219",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"phyomin","16cfaa75e41fbdbedea6e1309a855a7c","Phyo Min","1998-1-1","m","phyomin@gmail.com","09-987654421",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result) values(null,"paingoo","b275cba34b202c61856e047ecf381a3d","Paing Oo","1995-4-25","m","paingoo4@gmail.com","09-234544189",0,null);
+
+/* user login in user table thoon */
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"paingpaing","48b10937f49b6f66e1e66f02ad9417cf","Paing Paing","1995-6-26","m","paingpaing@gmail.com","09-1234567",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"minmin","4735a0c4d1b11f62ea44115d54a93087","Min Min","2000-6-9","m","minmin@gmail.com","09-8910121",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"nyannyan","4de5e6336ef7b514be83436e528154ea","Nyan Nyan","2001-3-6","m","nyannyan@gmail.com","09-7654321",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"yanyan","7219b9b60d9d70a9a7014369d88ebefe","Yan Yan","1992-4-2","m","yanyan@gmail.com","09-4534567",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"sithu","a646b306af575ad091f9a4bcf73d3e35","Si Thu","1995-2-5","m","sithu@gmail.com","09-6534567",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"chawchaw","f4d372da48eda459aca242ae17ae9e8d","Chaw Chaw","1991-1-2","f","chawchaw@gmail.com","09-8934567",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"maythu","8e7541be0551c7569965302d2825b29f","May Thu","1995-2-6","f","maythu@gmail.com","09-852147",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"khaingkhaing","31174a5801be4fe06da70674c2bef241","Khaing Khaing","1993-9-6","f","khaingkhaing@gmail.com","09-963852",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"thiri","dab6cb9b3340aa2220becc8f7479f19a","Thiri","2000-7-8","f","thiri@gmail.com","09-852741",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"hninaye","33625ae5a589fd5e437f4e9250c055db","Hnin Aye","1992-3-6","f","hninaye@gmail.com","09-74521369",0,null);
+
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"thonethone","ec1cbef9efbc0612937e79ce800e9a55","Thone Thone","1994-8-9","f","thonethone@gmail.com","09-4521305",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"zinzin","35f45a16e09f18867951eaa6574b4ba2","Zin Zin","1997-9-8","f","zinzin@gmail.com","09-452896352",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"dardar","749deff3169e0466768aef68ef4e9fa4","Dar Dar","1989-7-7","f","dardar@gmail.com","09-952348125",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"charlie","bf779e0933a882808585d19455cd7937","Charlie","1996-8-3","f","charlie@gmail.com","09-25943685",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"thitsar","7527286379b643468ecfff2742029806","Thit Sar","1998-6-3","f","thitsar@gmail.com","09-5021369",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"juhtay","4ce91beb61ecb81af8d5ce21e959e17d","Ju Ju","1986-8-3","f","juju@gmail.com","09-8512347965",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"yenyein","1e1a809d90178553e70841c1f2ac6d3e","Ye Nyein","1983-7-4","m","yenyein@gmail.com","09-62147855",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"june","11501255f17710952e79563ddc090a4d","June","1996-4-6","m","june@gmail.com","09-12489485",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"naywin","d67364612908a14e390953d2dd429746","Nay Win","1998-7-6","m","naywin@gmail.com","09-4512398547",0,null);
+insert into user (user_id,username,password,name,dob,gender,email,phone,role,bmi_result)values(null,"saisai","20bc169440b455f9f29e2f13b78de6a2","Sai Sai","1968-5-6","m","saisai@gmail.com","09-425954135",0,null);
+/*user record update (ohnmar linn)
+for user_id=1 */ 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"140","26.8",1,"2019-07-23"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"139","26.7",1,"2019-07-25"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"138","26.6",1,"2019-07-26"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"135","26.3",1,"2019-07-29"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"134","26.1",1,"2019-07-31"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"133","26",1,"2019-8-2"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"133","26",1,"2019-8-5"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,3,"130","25.8",1,"2019-8-6"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,4,"128","25.6",1,"2019-8-8"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,4,"125","25",1,"2019-8-13"); 
+
+/*for user_id=2 */
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,8,"140","27.3",2,"2019-3-16"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,8,"138","27",2,"2019-3-17"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,8,"137","26.8",2,"2019-3-18"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,8,"134","26.2",2,"2019-3-20"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,8,"132","25.8",2,"2019-3-25"); 
+
+/*for user_id=5 */
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,5,"110","18.3",5,"2019-9-20"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,5,"112","18.6",5,"2019-9-21"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,5,"115","19.1",5,"2019-9-23"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,5,"120","20",5,"2019-9-24"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,5,"120","20",5,"2019-9-25"); 
+
+/* for user_id=10 */
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,4,11,"137","27.7",10,"2019-8-19"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,4,11,"135","27.3",10,"2019-8-20"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,4,11,"133","26.9",10,"2019-8-21"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,4,11,"132","26.7",10,"2019-8-22"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,4,11,"130","26.3",10,"2019-8-23"); 
+
+/*for user_id=11*/
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"180","29.1",11,"2019-7-23"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"178","28.7",11,"2019-7-24"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"175","28.2",11,"2019-7-25"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"172","27.8",11,"2019-7-26"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"170","26.1",11,"2019-7-27"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"168","26",11,"2019-7-28"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"166","26.8",11,"2019-7-29"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"163","26.3",11,"2019-7-30"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"160","25.8",11,"2019-3-2"); 
+insert into record(record_id,height_feet,height_inches,weight,bmi,user_id,updated_date)values(null,5,6,"158","25.7",11,"2019-8-3"); 
+
+/*user record Shwe Yi*/
+
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,168,28,50,"2019-7-6");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,165,27.5,50,"2019-7-13");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,162,27,50,"2019-7-20");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,160,26.6,50,"2019-7-27");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,158,26.3,50,"2019-8-3");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,155,25.8,50,"2019-8-10");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,153,25.5,50,"2019-8-17");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,150,25,50,"2019-8-24");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,148,24.6,50,"2019-8-31");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,5,145,24.1,50,"2019-9-7");
+
+
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,4,8,70,15.7,51,"2019-8-4");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,4,8,75,16.8,51,"2019-8-11");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,4,8,80,17.9,51,"2019-8-18");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,4,8,83,18.6,51,"2019-8-25");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,4,8,85,19.1,51,"2019-9-1");
+
+
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,2,150,27.4,52,"2019-7-6");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,2,145,26.5,52,"2019-7-30");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,2,140,25.6,52,"2019-8-6");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,2,136,24.9,52,"2019-9-6");
+insert into record(record_id ,height_feet,height_inches,weight ,bmi ,user_id ,updated_date)values(null,5,2,133,24.3,52,"2019-10-6");
+
+insert into package(package_id,package_name,package_type,package_desc) values (null,"7days package",7,"One Week package is try for diet/weight gain"),
+(null,"10days package",10,"Ten days package is 3 routine for a month"),
+(null,"14days package",14,"Two Week package is for normal diet/weight gain"),
+(null,"One Month package",30,"One month package is for long term diet/weight gain");
+
+insert into choosepackage(choose_id,package_id,user_id,start_date,finish_date)values(null,1,1,"2019-9-20","2019-9-27"),
+(null,2,2,"2019-9-27","2019-10-11"),
+(null,3,3,"2019-9-30","2019-10-15"),
+(null,3,4,"2019-9-27","2019-10-26");
+
+INSERT INTO dailyfoodplan (`daily_id`,`days`,`choose_id`,`status`,`meal_id`)VALUES(null,1,1,1,1),
+(null,1,1,1,1),
+(null,1,1,1,1),
+(null,1,1,1,1),
+(null,2,1,1,1),
+(null,2,1,1,1),
+(null,2,1,1,1),
+(null,2,1,1,1);
+
+SELECT dailyfoodplan.daily_id,dailyfoodplan.days,dailyfoodplan.choose_id,dailyfoodplan.status,dailyfoodplan.meal_id,mealplan.meal_type,mealplan.meal_time,mealplan.meal_desc,mealplan.meal_image,mealplan.food_id,foodlist.food_name,foodlist.food_desc FROM ((dailyfoodplan INNER JOIN  mealplan ON mealplan.meal_id=dailyfoodplan.meal_id)INNER JOIN foodlist ON foodlist.food_id=mealplan.food_id) WHERE dailyfoodplan.days=2 and choose_id=2;

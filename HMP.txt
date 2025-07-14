@@ -1,0 +1,185 @@
+SET SESSION FOREIGN_KEY_CHECKS=0;
+
+/* Drop Tables */
+
+DROP TABLE IF EXISTS bmi;
+DROP TABLE IF EXISTS dailyfoodplan;
+DROP TABLE IF EXISTS choosepackage;
+DROP TABLE IF EXISTS mealplan;
+DROP TABLE IF EXISTS foodlist;
+DROP TABLE IF EXISTS foodcategory;
+DROP TABLE IF EXISTS package;
+DROP TABLE IF EXISTS record;
+DROP TABLE IF EXISTS user;
+
+
+
+
+/* Create Tables */
+
+CREATE TABLE bmi
+(
+	bi_id int NOT NULL AUTO_INCREMENT,
+	height int,
+	min_weight int,
+	max_weight int,
+	normal int,
+	over_weight int,
+	obese int,
+	extreme int,
+	PRIMARY KEY (bi_id)
+);
+
+
+CREATE TABLE choosepackage
+(
+	choose_id int NOT NULL AUTO_INCREMENT,
+	package_id int NOT NULL,
+	user_id int NOT NULL,
+	start_date date,
+	PRIMARY KEY (choose_id)
+);
+
+
+CREATE TABLE dailyfoodplan
+(
+	daily_id int NOT NULL AUTO_INCREMENT,
+	days int,
+	choose_id int NOT NULL,
+	status int,
+	meal_id int NOT NULL,
+	PRIMARY KEY (daily_id)
+);
+
+
+CREATE TABLE foodcategory
+(
+	cat_id int NOT NULL AUTO_INCREMENT,
+	cat_name varchar(255),
+	PRIMARY KEY (cat_id)
+);
+
+
+CREATE TABLE foodlist
+(
+	food_id int NOT NULL AUTO_INCREMENT,
+	food_name varchar(255),
+	cat_id int NOT NULL,
+	food_desc varchar(255),
+	PRIMARY KEY (food_id)
+);
+
+
+CREATE TABLE mealplan
+(
+	meal_id int NOT NULL AUTO_INCREMENT,
+	meal_type varchar(255),
+	meal_time int,
+	food_id int NOT NULL,
+	meal_desc varchar(255),
+	meal_image varchar(255),
+	PRIMARY KEY (meal_id)
+);
+
+
+CREATE TABLE package
+(
+	package_id int NOT NULL AUTO_INCREMENT,
+	package_name varchar(255),
+	package_type int,
+	package_desc varchar(255),
+	PRIMARY KEY (package_id)
+);
+
+
+CREATE TABLE record
+(
+	record_id int NOT NULL AUTO_INCREMENT,
+	height_feet int,
+	height_inches int,
+	weight float,
+	bmi float,
+	user_id int NOT NULL,
+	updated_date date,
+	PRIMARY KEY (record_id)
+);
+
+
+CREATE TABLE user
+(
+	user_id int NOT NULL AUTO_INCREMENT,
+	username varchar(255) NOT NULL,
+	password varchar(255),
+	name varchar(255),
+	dob date,
+	gender char(2),
+	email varchar(255),
+	phone varchar(255),
+	role int,
+	bmi_result float,
+	PRIMARY KEY (user_id),
+	UNIQUE (user_id),
+	UNIQUE (username)
+);
+
+
+
+/* Create Foreign Keys */
+
+ALTER TABLE dailyfoodplan
+	ADD FOREIGN KEY (choose_id)
+	REFERENCES choosepackage (choose_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE foodlist
+	ADD FOREIGN KEY (cat_id)
+	REFERENCES foodcategory (cat_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE mealplan
+	ADD FOREIGN KEY (food_id)
+	REFERENCES foodlist (food_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE dailyfoodplan
+	ADD FOREIGN KEY (meal_id)
+	REFERENCES mealplan (meal_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE choosepackage
+	ADD FOREIGN KEY (package_id)
+	REFERENCES package (package_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE choosepackage
+	ADD FOREIGN KEY (user_id)
+	REFERENCES user (user_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE record
+	ADD FOREIGN KEY (user_id)
+	REFERENCES user (user_id)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+
